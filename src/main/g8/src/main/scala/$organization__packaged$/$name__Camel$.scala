@@ -2,8 +2,9 @@ package $organization$
 
 import akka.actor._
 import akka.pattern.ask
-import akka.util.duration._
 import akka.util.Timeout
+import scala.concurrent.ExecutionContext
+import scala.concurrent.duration._
 
 case object Tick
 case object Get
@@ -18,6 +19,8 @@ class Counter extends Actor {
 }
 
 object $name;format="Camel"$ extends App {
+  import ExecutionContext.Implicits.global
+
   val system = ActorSystem("$name;format="Camel"$")
 
   val counter = system.actorOf(Props[Counter])
